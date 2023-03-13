@@ -23,5 +23,4 @@ author='Grevians Onula',
 author_email='greviansonula@gmail.com',
 packages=find_packages(),
 install_requires=get_requirements('requirements.txt')
-
 )
