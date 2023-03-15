@@ -21,7 +21,8 @@ class DataIngestion:
         logging.info("Entered the data ingestion component")
 
         try:
-            df = pd.read_csv("notebook/data/StudentsPerformance.csv")
+            data_path = os.path.join(os.path.join(os.path.join(os.getcwd(), "src"), "notebook"), "data") + "/stud.csv"
+            df = pd.read_csv(data_path)
             logging.info("Data Loaded as a dataframe")
 
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path), exist_ok=True)
