@@ -2,16 +2,15 @@ import os
 import sys
 from dataclasses import dataclass
 
-from catboost import CatBoostingRegressor
+from catboost import CatBoostRegressor
 from sklearn.ensemble import (
-    AdaBoostingRegressor,
-    GradientBoostingRegressor,
+    AdaBoostRegressor,
     GradientBoostingRegressor,
     RandomForestRegressor,
 )
 
-from sklearn.linear_model import LinearRegression
-from skearn.metrics import r2_score
+from sklearn.linear_model import LinearRegression, Ridge, Lasso
+from sklearn.metrics import r2_score
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.tree import DecisionTreeRegressor
 from xgboost import XGBRegressor
