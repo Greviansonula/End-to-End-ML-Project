@@ -13,9 +13,10 @@ from src.exception import CustomException
 from src.logger import logging
 from src.utils import save_obj
 
+
 @dataclass
 class DataTransformationConfig:
-    preprocessor_obj_file_path = os.path.join('artifact', "proprocessor.pkl")
+    preprocessor_obj_file_path = os.path.join('artifacts', "preprocessor.pkl")
 
 class DataTransformation:
     '''
@@ -25,13 +26,13 @@ class DataTransformation:
         preprocessor
     '''
     def __init__(self):
-        self.data_transformation_config = DataTransformation()
+        self.data_transformation_config = DataTransformationConfig()
 
     def get_data_transformer_object(self):
         try:
-            numerical_columns =["writing score", "reading score", "math score"]
+            numerical_columns =["writing score", "reading score"]
             categorical_columns = ["gender", "race/ethnicity",
-                                   "parentl level of education", "lunch", "test preparation course"
+                                   "parental level of education", "lunch", "test preparation course"
                                    ]
 
             num_pipeline = Pipeline(
@@ -45,7 +46,7 @@ class DataTransformation:
                 steps = [
                     ("imputer", SimpleImputer(strategy="most_frequent")),
                     ("one_hot_encoder", OneHotEncoder()),
-                    ("scaler", StandardScaler())
+                    ("scaler", StandardScaler(with_mean=False))
                 ]
             )    
 
@@ -68,7 +69,7 @@ class DataTransformation:
     def initiate_data_transformation(self, train_path, test_path):
         try:
             train_df = pd.read_csv(train_path)
-            test_df = df.read_csv(test_pathsd)
+            test_df = pd.read_csv(test_path)
             
             logging.info("Train and Test data read successfully")
 
